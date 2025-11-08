@@ -93,7 +93,10 @@ const PostCard = ({ post, onLike, onUnlike, onComment, onDelete, onUpdate }) => 
           {isOwner && !isEditing && (
             <div className="relative" ref={menuRef}>
               <button
-                onClick={() => setShowMenu(!showMenu)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setShowMenu(!showMenu);
+                }}
                 className="text-gray-500 hover:bg-gray-100 p-2 rounded-full transition"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -101,7 +104,7 @@ const PostCard = ({ post, onLike, onUnlike, onComment, onDelete, onUpdate }) => 
                 </svg>
               </button>
               {showMenu && (
-                <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-10">
+                <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-20">
                   <button
                     onClick={() => {
                       setIsEditing(true);
