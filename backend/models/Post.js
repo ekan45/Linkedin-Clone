@@ -25,9 +25,14 @@ const postSchema = new mongoose.Schema({
   content: {
     type: String,
     required: [true, 'Post content is required'],
-    trim: true
+    trim: true,
+    maxlength: 3000
   },
   image: {
+    type: String,
+    default: ''
+  },
+  video: {
     type: String,
     default: ''
   },
@@ -35,7 +40,29 @@ const postSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   }],
-  comments: [commentSchema]
+  comments: [commentSchema],
+  shares: [{
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    },
+    sharedAt: {
+      type: Date,
+      default: Date.now
+    }
+  }],
+  isRepost: {
+    type: Boolean,
+    default: false
+  },
+  originalPost: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Post'
+  },
+  views: {
+    type: Number,
+    default: 0
+  }
 }, {
   timestamps: true
 });

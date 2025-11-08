@@ -21,10 +21,129 @@ const userSchema = new mongoose.Schema({
     minlength: 6,
     select: false
   },
+  headline: {
+    type: String,
+    default: '',
+    maxlength: 120,
+    trim: true
+  },
   bio: {
     type: String,
-    default: ''
+    default: '',
+    maxlength: 2000
   },
+  profilePhoto: {
+    type: String,
+    default: 'https://via.placeholder.com/150/0077B5/FFFFFF?text=User'
+  },
+  bannerPhoto: {
+    type: String,
+    default: 'https://via.placeholder.com/1200x300/0077B5/FFFFFF?text=LinkedIn+Clone'
+  },
+  location: {
+    type: String,
+    default: '',
+    trim: true
+  },
+  website: {
+    type: String,
+    default: '',
+    trim: true
+  },
+  skills: [{
+    type: String,
+    trim: true
+  }],
+  experience: [{
+    company: {
+      type: String,
+      required: true,
+      trim: true
+    },
+    position: {
+      type: String,
+      required: true,
+      trim: true
+    },
+    location: {
+      type: String,
+      trim: true
+    },
+    startDate: {
+      type: Date,
+      required: true
+    },
+    endDate: {
+      type: Date
+    },
+    current: {
+      type: Boolean,
+      default: false
+    },
+    description: {
+      type: String,
+      maxlength: 1000
+    }
+  }],
+  education: [{
+    school: {
+      type: String,
+      required: true,
+      trim: true
+    },
+    degree: {
+      type: String,
+      required: true,
+      trim: true
+    },
+    fieldOfStudy: {
+      type: String,
+      trim: true
+    },
+    startDate: {
+      type: Date,
+      required: true
+    },
+    endDate: {
+      type: Date
+    },
+    current: {
+      type: Boolean,
+      default: false
+    },
+    description: {
+      type: String,
+      maxlength: 1000
+    }
+  }],
+  connections: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }],
+  connectionRequests: [{
+    from: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    },
+    message: {
+      type: String,
+      maxlength: 300
+    },
+    status: {
+      type: String,
+      enum: ['pending', 'accepted', 'declined'],
+      default: 'pending'
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now
+    }
+  }],
+  savedJobs: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Job'
+  }],
+  // Legacy field for backward compatibility
   profileImage: {
     type: String,
     default: ''
