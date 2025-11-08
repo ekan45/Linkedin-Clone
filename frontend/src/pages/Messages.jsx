@@ -33,7 +33,7 @@ const Messages = () => {
           </div>
         </div>
       </div>
-    </div>
+      </div>
     </>
   );
 };

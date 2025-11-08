@@ -76,7 +76,7 @@ const Network = () => {
           </div>
         </div>
       </div>
-    </div>
+      </div>
     </>
   );
 };
