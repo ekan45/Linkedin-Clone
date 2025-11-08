@@ -1,0 +1,28 @@
+{
+  "name": "linkedin-clone",
+  "version": "1.0.0",
+  "description": "Full Stack LinkedIn Clone - Social Media Application",
+  "scripts": {
+    "install-all": "cd backend && npm install && cd ../frontend && npm install",
+    "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm run dev\"",
+    "backend": "cd backend && npm run dev",
+    "frontend": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "deploy-backend": "cd backend && vercel --prod",
+    "deploy-frontend": "cd frontend && vercel --prod"
+  },
+  "keywords": [
+    "linkedin",
+    "social-media",
+    "react",
+    "nodejs",
+    "express",
+    "mongodb",
+    "fullstack"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
